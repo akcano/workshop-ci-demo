@@ -14,5 +14,4 @@ It shows two things that are awkward to get from a hand-built CI container:
 - **SDK cache persistence.** The action's `cache` input keeps the uv download
   cache between runs, so third-party wheels are fetched once and reused.
 
-See the how-to *How to run workshops in GitHub Actions* in the Workshop
-documentation.
+See the how-to [How to run workshops in GitHub Actions](https://ubuntu.com/workshop/docs/how-to/develop-with-workshops/run-workshops-in-github-actions/).
