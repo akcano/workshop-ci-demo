@@ -1,0 +1,28 @@
+name: matrix
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        workshop: [dev-jammy, dev-noble]
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: canonical/launch-workshop@v0
+        with:
+          # canonical/workshop is public, so the built-in GITHUB_TOKEN can read
+          # its releases. No personal access token or repository secret needed.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workshop: ${{ matrix.workshop }}
+          cache: |
+            uv:cache
+
+      - run: workshop run "$WS" unit-tests
+        env:
+          WS: ${{ matrix.workshop }}
