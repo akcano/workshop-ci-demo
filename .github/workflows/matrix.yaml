@@ -14,11 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: canonical/launch-workshop@v0
+      - uses: canonical/launch-workshop@v1
         with:
-          # canonical/workshop is public, so the built-in GITHUB_TOKEN can read
-          # its releases. No personal access token or repository secret needed.
-          token: ${{ secrets.GITHUB_TOKEN }}
           workshop: ${{ matrix.workshop }}
           cache: |
             uv:cache
